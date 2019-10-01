@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row" *ngFor="let book of cart;let i = index">
+    <div class="col-12">
+      <div class="card book-item">
+        <div class="card-header book-header">
+          <div class="close">
+            <i class="material-icons" (click)="removeFromCart(book)" title="Remove from cart">close</i>
+          </div>
+          <div>
+            {{book.title}}
+          </div>
+
+          <div class="author">
+            by {{book.authors}}
+          </div>
+        </div>
+        <div class="card-body book-body">
+          <img class="book-thumb" src="/assets/book-thumb.png" alt="{{book.title}}">
+          <div class="book-prop">
+            <div class="rating-row">
+              <span class="avg-rating">({{ book.average_rating }})</span>
+              <ngx-stars [readonly]="true" [initialStars]="book.average_rating" [size]="1" [color]="'#f3a600'">
+              </ngx-stars>
+
+            </div>
+            <div class="isbn-row">
+              <span class="isbn">ISBN &nbsp;</span>
+              <span class="isbn-value">{{book.isbn}}</span>
+            </div>
+            <hr>
+            <div class="lang-row">
+              <span class="lang">{{("" + book.language_code)?.toUpperCase()}}</span>
+            </div>
+            <div class="price-row">
+              <span class="price">&#8377; {{book.price}}</span>
+            </div>
+            <div class="rating-count-row">
+              <span class="rating-count"> Rating count &nbsp;</span>
+              <span class="rating-count-value">{{ book.ratings_count }}</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card book-item">
+        <div class="card-body">
+          Total: &#8377; {{totalPrice}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

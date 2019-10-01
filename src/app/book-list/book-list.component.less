@@ -1,0 +1,120 @@
+@import "../styles/constants";
+
+.row {
+    padding: 3px;
+    background-color: rgba(255, 255, 255, 0);
+    .book-item {
+        background-color: #fffffff3
+    }   
+    .book-header {
+        font-family: sans-serif;
+        font-size: 1.25em;
+        .author {
+            font-size: 0.75em;
+            font-style: italic;
+        }
+    }
+    .book-thumb {
+        width: 128px;
+        height: 128px;
+        float: left;
+    }
+    .book-prop {
+        height: 128px;
+        margin-left: 138px;
+        
+        div {
+            padding: 0px 10px 0px 10px;;
+        }
+        .rating-row {
+            display: flex;
+            justify-content: flex-end;
+            .avg-rating {
+                color: #a16900;
+            }
+        }
+        .price-row {
+            font-weight: bold;
+            color: rgb(168, 0, 0);
+        }
+        .lang-row {
+            font-weight: bold;
+            color: #4600eb;
+        }
+        .isbn-row {
+            color: #195800;
+            .isbn {
+                font-style: italic;
+            }
+            .isbn-value {
+                font-weight: bold;
+            }
+            .add-to-cart {
+                float: right;
+            }
+            .remove-from-cart {
+                float: right;
+                color: green;
+            }
+        }
+        .rating-count-row {
+            display: flex;
+            justify-content: flex-end;
+            .rating-count {
+                font-style: italic;
+            }
+            .rating-count-value {
+                color: #002ec5;
+            }
+        }
+    }
+}
+hr {
+    color: #161616;
+}
+.page-nav {
+    cursor: pointer;
+}
+
+.header {
+    flex-direction: row-reverse;
+    padding: 10px;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.8);
+    .cart-icon {
+        margin-right: 0px;
+        border: 0px solid black;
+        height: 32px;
+        min-width: 64px;
+    }
+    
+}
+i {
+}
+@media screen and (max-width: 800px) {
+    .header {
+        flex-direction: column;
+    }
+}
+// @media screen and (min-width: 800px) {
+//     .header {
+//         &.sticky {
+//             position: fixed;
+//             top: 0;
+//             width: 100%;
+//             background-color: rgba(0, 0, 0, 0.5);
+//         }
+//     }
+    
+// }
+
+input, select {
+    width: 200px;
+    height: 32px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.pagination {
+    background-color: white;
+}

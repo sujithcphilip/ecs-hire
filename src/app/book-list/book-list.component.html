@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="row">
+      <div class="col-12">
+        <div class="card book-item">
+            <div class="header" [ngClass]="isSticky? 'sticky':''">
+                <select class="round-select" [(ngModel)]="sortKey" (change)="sortBooks()">
+                    <option value="">Sort</option>
+                    <option value="title">Title</option>
+                    <option value="authors">Authors</option>
+                    <option value="average_rating">Average Rating</option>
+                    <option value="price">Price</option>
+                    <option value="ratings_count">Ratings Count</option>
+                    <option value="language_code">Language Code</option>
+                  </select>
+                <input class="round-input" type="text" [(ngModel)]="searchText">&nbsp;
+                <button class="round-button" (click)="searchBooks()">Search</button>
+                <button class="btn btn-warning add-to-cart cart-icon" title="Checkout" [routerLink]="'checkout'">
+                    <i class="material-icons">shopping_cart</i>
+                    <i>{{getCartSize()}}</i>
+                  </button>
+              </div>
+        </div>
+      </div>
+    </div>
+
+
+  <div class="row" *ngFor="let book of currentBookList | paginate: {
+  itemsPerPage: pageSize,
+  currentPage: current,
+  totalItems: currentBookList.length };let i = index">
+    <div class="col-12">
+      <div class="card book-item">
+        <div class="card-header book-header">
+          {{book.title}}
+          <div class="author">
+            by {{("" + book.authors).trim()}}
+          </div>
+        </div>
+        <div class="card-body book-body">
+          <img class="book-thumb" src="/assets/book-thumb.png" alt="{{book.title}}">
+          <div class="book-prop">
+            <div class="rating-row">
+              <span class="avg-rating">({{ book.average_rating }})</span>
+              <ngx-stars [readonly]="true" [initialStars]="book.average_rating" [size]="1" [color]="'#f3a600'">
+              </ngx-stars>
+
+            </div>
+            <div class="isbn-row">
+              <span class="isbn">ISBN &nbsp;</span>
+              <span class="isbn-value">{{("" + book.isbn).trim()}}</span>
+              <button *ngIf="!inCart(book)" class="btn btn-warning add-to-cart round-button" title="Add to Cart" (click)="addToCart(book)">
+                <i class="material-icons">shopping_cart</i>
+              </button>
+              <button *ngIf="inCart(book)" class="btn btn-warning remove-from-cart round-button" title="Remove from Cart" (click)="removeFromCart(book)">
+                  <i class="material-icons">done</i>
+                </button>
+            </div>
+            <hr>
+            <div class="lang-row">
+              <span class="lang">{{("" + book.language_code).trim()?.toUpperCase()}}</span>
+            </div>
+            <div class="price-row">
+              <span class="price">&#8377; {{book.price}}</span>
+            </div>
+            <div class="rating-count-row">
+              <span class="rating-count"> Rating count &nbsp;</span>
+              <span class="rating-count-value">{{ book.ratings_count }}</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-12 pagination">
+          <pagination-controls (pageChange)="current = $event"></pagination-controls>
+      </div>
+    </div>
+    
+
+</div>
